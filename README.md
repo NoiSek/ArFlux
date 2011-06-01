@@ -1,3 +1,4 @@
-# Kohana PHP Framework, version 3.1 (release)
+# ArFlux RPG
 
-This is the current release version of [Kohana](http://kohanaframework.org/).
+This is the github for [ArFlux](http://arflux-rpg.com/game).
+To learn more visit the [wiki] (http://arflux-rpg.com/wiki).
