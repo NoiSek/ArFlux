@@ -80,7 +80,7 @@ if (isset($_SERVER['KOHANA_ENV']))
  * - boolean  caching     enable or disable internal caching                 FALSE
  */
 Kohana::init(array(
-	'base_url'   => '/game/kohana/',
+	'base_url'   => '/game/',
 ));
 
 /**
@@ -113,6 +113,6 @@ Kohana::modules(array(
  */
 Route::set('default', '(<controller>(/<action>(/<id>)))')
 	->defaults(array(
-		'controller' => 'home',
+		'controller' => 'main',
 		'action'     => 'index',
 	));

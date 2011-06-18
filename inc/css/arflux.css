@@ -1,0 +1,93 @@
+body {
+	font-family: verdana;
+	margin: 0px;
+	background: #000 url('/game/inc/images/bg.jpg') repeat-x;
+	color: #fff;
+}
+
+@font-face {
+	font-family: fanwood;
+	src: url('/game/inc/FanwoodText.otf');
+}
+
+.fanwood {
+	font-family: fanwood;
+}
+
+#container {
+	margin: auto;
+	width: 80%;
+}
+
+	#left_col {
+		padding: 5px;
+		width: 68%;
+	}
+		#header {
+			margin: auto;
+			padding: 25px;
+		}
+		
+			#logo {
+				display: block;
+				margin: auto;
+			}
+			
+		#content {
+			width: 100%;
+			padding: 10px;
+		}
+			.photo {
+				padding: 5px;
+			}
+			
+		.challenge {
+			padding: 5px;
+			background: url('/inc/images/challenge_bg.png');
+			height: 151px;
+			float: left;
+			width: 70%;
+		}
+			.challenge_description {
+				font-family: verdana;
+				font-size: 10pt;
+			}
+			
+		#user_feed {
+			padding: 5px;
+		}
+		
+			.feed_item {
+				padding: 5px;
+				background: rgba(255,255,255,.2);
+				height: 120px;
+				width: 100%;
+			}
+			
+		#monsters, #users {
+			padding: 10px;
+		}
+			.opponent_name {
+				font-size: 16pt;
+			}
+			
+		#welcome {
+			font-size: 48pt;
+			text-align: center;
+		}
+
+	#right_col {
+		padding: 10px;
+		width: 30%;
+	}
+		#username {
+			font-size: 30pt;
+		}
+		
+		.stat {
+			font-size: 20pt;
+			margin-top: 10px;
+		}
+			.stat_icon {
+				margin-right: 25px;
+			}

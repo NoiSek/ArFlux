@@ -1,0 +1,60 @@
+body {
+	margin: 0px;
+	background: #353A3F url('/game/inc/images/concrete_wall.png');
+}
+
+#header {
+	background: url('/game/inc/images/hardcore_header.png');
+	height: 100px;
+	width: 1162px;
+	margin: 0 auto;
+}
+
+#container {
+	width: 1162px;
+	margin: 0 auto;
+}
+
+#content {
+	padding: 10px;
+	background: #111111;
+	width: 1130px;
+	margin: 0 auto;
+}
+
+.content_header {
+	color: #fff;
+	font-size: 72px;
+	border-bottom: #c6c6c6 1px dotted;
+}
+
+#left {
+	width: 69%;
+}
+
+#right {
+	width: 29%;
+}
+
+#user_list, #enemy_list {
+	height: 150px;
+}
+
+@font-face {
+	font-family: blackout;
+	src: url('/game/inc/Blackout-2am.ttf');
+}
+
+.blackout {
+	color: #b7b7b7;
+	font-family: blackout;
+}
+
+@font-face {
+	font-family: fanwood;
+	src: url('/game/inc/FanwoodText.otf');
+}
+
+.fanwood {
+	font-family: fanwood;
+}
