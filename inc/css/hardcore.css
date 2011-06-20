@@ -3,6 +3,14 @@ body {
 	background: #353A3F url('/game/inc/images/concrete_wall.png');
 }
 
+#content {
+	float: left;
+	padding: 10px;
+	background: #111111;
+	width: 1130px;
+	margin-left: 5px;
+}
+
 #header {
 	background: url('/game/inc/images/hardcore_header.png');
 	height: 100px;
@@ -11,33 +19,93 @@ body {
 }
 
 #container {
+	left: -50%;
+	float: left;
+	position: relative;
 	width: 1162px;
 	margin: 0 auto;
 }
 
-#content {
-	padding: 10px;
-	background: #111111;
-	width: 1130px;
-	margin: 0 auto;
+#manliness {
+	margin-bottom: 110px;
+}
+
+#manliness_image, #richliness_image {
+	float: left;
+}
+
+#manliness_level, #richliness_level {
+	margin-top: 10px;
+	float: left;
+	clear: right;
+}
+
+#manliness_title, #richliness_title {
+	position:relative;
+	top: 20px;
+	margin-left: 10px;
+}
+
+#manliness_level_bar, #richliness_level_bar {
+	margin-left: 10px;
+	display: block; 
+	background: #3a3a3a;
+	width: 225px; 
+	height: 20px; 
+	border-radius: 2px;
+}
+
+#manliness_level_overlay, #richliness_level_overlay {
+	margin-left: 10px;
+	position: relative;
+	top: 20px;
+	display: block; 
+	background: url('/game/inc/images/levelbar.png'); 
+	width: 20px; 
+	height: 20px; 
+	border-radius: 2px;
+}
+
+#left {
+	float: left;
+	width: 70%;
+}
+
+#right {
+	float: right;
+	width: 30%;
+}
+
+#richliness {
+	
+}
+
+#user_list, #enemy_list {
+	height: 150px;
 }
 
 .content_header {
 	color: #fff;
 	font-size: 72px;
-	border-bottom: #c6c6c6 1px dotted;
 }
 
-#left {
-	width: 69%;
+.content_header a{
+	color: #fff;
+	text-decoration: none;
 }
 
-#right {
-	width: 29%;
+.content_header a:hover{
+	color: #2B879E;
+	border-bottom: #c6c6c6 1px dashed;
 }
 
-#user_list, #enemy_list {
-	height: 150px;
+.stat {
+	font-size: 60pt;
+}
+
+.subtitle {
+	font-size: 14pt;
+	color: #ACACAC;
 }
 
 @font-face {

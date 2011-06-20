@@ -5,14 +5,14 @@
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function(
-				var listcount = 0;
+				/*var listcount = 0;
 				while (listcount != 6)
 				{
 					get_enemy();
 				}
 				
 				function get_enemy() {
-					var query = 'manliness=<?$manliness?>';
+					var query = 'manliness=//<$manliness?>';
 					$.get('index.php/getenemy', query, function(data){
 						$("user_list").append(data);
 					});
@@ -27,35 +27,57 @@
 				));
 				
 
-			));
+			));*/
 		</script>
 	</head>
-    <body style="background: url('/game/inc/images/concrete_wall.png');">
-		<div id="container">
-			<div id="header"></div>
-			<div id="content">
-				<span id="left">
-					<div id="combat">
-						<div id="users">
-							<div class="fanwood content_header"><a id="users_header" href="#hide_users">Users</a></div>
-							<div id="user_list">
+    <body>
+    	<div style="float: left; position: relative; left: 50%;">
+			<div id="container">
+				<div id="header"></div>
+				<div id="content">
+					<div id="left">
+						<div id="combat">
+							<div id="users">
+								<div class="fanwood content_header"><a id="users_header" href="#">Users</a></div>
+								<div id="user_list">
+								</div>
+							</div>
+							<div id="Enemies">
+								<div class="fanwood content_header"><a id="enemies_header" href="#">Enemies</a></div>
+								<div id="enemy_list"></div>
 							</div>
 						</div>
-						<div id="Enemies">
-							<div class="fanwood content_header"><a id="enemies_header" href="#hide_enemies">Enemies</a></div>
-							<div id="enemy_list"></div>
+					</div>
+					<div id="right">
+						<div id="info">
+							<div id="manliness">
+								<div id="manliness_number" class="blackout stat">Manliness</div>
+								<div id="manliness_stats">
+									<img id="manliness_image" src="/game/inc/images/manliness.png"/>
+									<div id="manliness_level">
+										<?echo "<span id='manliness_title' class='fanwood subtitle'>{$manliness} - {$manliness_rank}</span>"?>
+										<div id="manliness_level_overlay"></div>
+										<div id="manliness_level_bar"></div>						
+									</div>
+								</div>
+							</div>
+							<div id="richliness">
+								<div id="richliness_number" class="blackout stat">Richliness</div>
+								<div id="richliness_stats">
+									<img id="richliness_image" src="/game/inc/images/richliness.png"/>
+									<div id="richliness_level">
+										<?echo "<span id='manliness_title' class='fanwood subtitle'>{$richliness} - {$richliness_rank}</span>"?>
+										<div id="richliness_level_overlay"></div>
+										<div id="richliness_level_bar"></div>						
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="stats">
+							
 						</div>
 					</div>
-				</span>
-				<span id="right">
-					<div id="info">
-						<div align="center" id="username" class="fanwood"><?echo $username;?></div>
-						<div id="manliness" class="blackout stat"><div>Manliness</div><img src="/game/inc/images/manliness.png" class="stat_icon" /><?echo $manliness?></div>
-						<div id="money" class="blackout stat"><div>Money</div><img src="/game/inc/images/richliness.png" class="stat_icon" /><?echo $money?></div>
-					</div>
-					<div id="stats">
-					</div>
-				</span>
+				</div>
 			</div>
 		</div>
 	</body>
