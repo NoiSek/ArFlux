@@ -3,3 +3,6 @@
 *.pyo
 example.htaccess
 database.php
+.htaccess
+.metadata
+.project

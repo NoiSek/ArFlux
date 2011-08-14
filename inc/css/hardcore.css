@@ -1,7 +1,49 @@
+/*
+ * Hey, you! If you are ever tasked to edit my codebase,
+ * I organize by type, and then alphabetically.
+ * To find .ex, you would scroll to the class comment,
+ * and then look under 'e'.
+ * ~Captain Lightning, June 27 2011
+ */
+
+/*
+ * Document properties go here.
+ */
+
+a {
+	outline: none;
+	color: #fff;
+	text-decoration: none;
+}
+
+a:hover {
+	outline: none;
+	color: #2B879E;
+}
+
+a:active, a:visited {
+	outline: none;
+}
+
 body {
 	margin: 0px;
 	background: #353A3F url('/game/inc/images/concrete_wall.png');
 }
+
+html { 
+	overflow-y: scroll;
+}
+
+input[type=submit],label,select,.pointer  {
+	 cursor:pointer; 
+}
+li a { 
+	display:block; 
+	}
+
+/*
+ * Div identifiers start here.
+ */
 
 #content {
 	float: left;
@@ -11,17 +53,18 @@ body {
 	margin-left: 5px;
 }
 
-#header {
-	background: url('/game/inc/images/hardcore_header.png');
-	height: 100px;
-	width: 1162px;
-	margin: 0 auto;
-}
-
 #container {
 	left: -50%;
 	float: left;
 	position: relative;
+	width: 1162px;
+	margin: 0 auto;
+	margin-bottom: 50px;
+}
+
+#header {
+	background: url('/game/inc/images/hardcore_header.png');
+	height: 100px;
 	width: 1162px;
 	margin: 0 auto;
 }
@@ -41,9 +84,6 @@ body {
 }
 
 #manliness_title, #richliness_title {
-	position:relative;
-	top: 20px;
-	margin-left: 10px;
 }
 
 #manliness_level_bar, #richliness_level_bar {
@@ -61,9 +101,15 @@ body {
 	top: 20px;
 	display: block; 
 	background: url('/game/inc/images/levelbar.png'); 
-	width: 20px; 
+	width: 0px; 
 	height: 20px; 
 	border-radius: 2px;
+}
+
+#manliness_level_info, #richliness_level_info {
+	position: relative;
+	left: 20px;
+	top: 10px;
 }
 
 #left {
@@ -84,19 +130,21 @@ body {
 	height: 150px;
 }
 
+#users_header, #enemies_header {
+}
+
+/*
+ * Classes start here
+ */
+
 .content_header {
 	color: #fff;
 	font-size: 72px;
 }
 
-.content_header a{
-	color: #fff;
-	text-decoration: none;
-}
-
-.content_header a:hover{
-	color: #2B879E;
-	border-bottom: #c6c6c6 1px dashed;
+.enemy {
+	padding: 5px;
+	float: left;
 }
 
 .stat {
@@ -108,6 +156,9 @@ body {
 	color: #ACACAC;
 }
 
+/*
+ * Fonts
+*/
 @font-face {
 	font-family: blackout;
 	src: url('/game/inc/Blackout-2am.ttf');
