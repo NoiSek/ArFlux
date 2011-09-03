@@ -31,7 +31,7 @@ Class Controller_handler extends Controller_Template
 			else
 			{
 	            list($insert_id, $num_rows) = DB::query(Database::INSERT,
-					'INSERT INTO hardcore_enemies (
+					'INSERT INTO hardcore_monsters (
 						name, manliness, richliness_reward, manliness_reward, richliness_penalty, manliness_penalty, author)
 					VALUES (
 						:name, :manliness, :richliness_reward, :manliness_reward, :richliness_penalty, :manliness_penalty, :author)')
@@ -66,95 +66,26 @@ Class Controller_handler extends Controller_Template
 
 	public function action_request()
 	{
+		$enemy = Model::factory('enemy'); 
 		$this->template = View::factory('return');
-		$this->template->request_enemy = true;
+		
 		if (isset($_GET['type']) && $_GET['type'] == 'enemy')
 		{
-			$max = DB::query(database::SELECT,
-			'SELECT *
-			FROM hardcore_enemies
-			WHERE manliness <= :manliness')
-			->parameters(array(
-				':manliness' => $_GET['manliness'] * 5,
-			))
-			->execute()->count();
-			$max = floor($max);
-
-			$rand_id = rand(0, $max);
-			$enemy = DB::query(database::SELECT,
-			'SELECT *
-			FROM hardcore_enemies
-			WHERE manliness <= :manliness
-			AND id = :id'
-			)
-			->parameters(array(
-				':manliness' => $_GET['manliness'] * 5,
-				':id' => $rand_id,
-			))
-			->execute()->current();
-			
-			if (!$enemy)
-			{
-				$return = array(
-					'success' => false,
-				);
-			}
-			else
-			{
-				$return = array(
-					'success' => true,
-					'id' => $enemy['id'],
-					'name' => $enemy['name'],
-					'manliness' => $enemy['manliness'],
-					'manliness_reward' => $enemy['manliness_reward'],
-					'richliness_reward' => $enemy['richliness_reward'],
-					'manliness_penalty' => $enemy['manliness_penalty'],
-					'richliness_penalty' => $enemy['richliness_penalty'],
-				);
-			}
+			$return = $enemy->pull_monster($_GET['uid']);
 		}
 		else if (isset($_GET['type']) && $_GET['type'] == 'user')
 		{
-			$max = DB::query(database::SELECT,
-			'SELECT *
-			FROM hardcore_users
-			WHERE manliness <= :manliness')
-			->parameters(array(
-				':manliness' => $_GET['manliness'] * 5,
-			))
-			->execute()->count();
-			$max = floor($max);
-
-			$rand_id = rand(0, $max);
-			$user = DB::query(database::SELECT,
-			'SELECT *
-			FROM hardcore_users
-			WHERE manliness <= :manliness
-			AND id = :id'
-			)
-			->parameters(array(
-				':manliness' => $_GET['manliness'] * 5,
-				':id' => $rand_id,
-			))
-			->execute()->current();
-			
-			if (!$user)
-			{
-				$return = array(
-					'success' => false,
-				);
-			}
-			else
-			{
-				$return = array(
-					'success' => true,
-					'id' => $user['id'],
-					'name' => $user['username'],
-					'manliness' => $user['manliness'],
-					'richliness_reward' => floor(($user['richliness']/10)),
-				);
-			}
+			$return = $enemy->pull_user($_GET['uid']);
 		}
+		else
+		{
+			$return = array(
+				'success' => false,
+				'err' => "Undefined request, received {$_GET['type']}",	
+			);
+			$this->template->return = json_encode($return);
+		}
+
 		if(isset($return))
 		{
 			$this->template->return = json_encode($return);
@@ -163,33 +94,27 @@ Class Controller_handler extends Controller_Template
 		{
 			$return = array(
 				'success' => false,
-				'err' => "Undefined request, recieved {$_GET['type']}",	
+				'err' => "Function failed to return data.",	
 			);
 			$this->template->return = json_encode($return);
 		}
+
 	}
 
 	public function action_combat()
 	{
 		$this->template = View::factory('return');
-		$this->template->combat = true;
-		
-		$chance = 50 + ($_GET['user_manliness'] - $_GET['enemy_manliness'])/10;
-		
-		if(rand(0,100) <= $chance)
-		{
-			$return = array(
-				'success' => true,	
-			);
-			$this->template->return = json_encode($return);
-		}
-		else
-		{
-			$return = array(
-				'success' => false,
-			);
-			$this->template->return = json_encode($return);
-		}
+		$enemy = Model::factory('enemy');
+		$return = $enemy->combat($_GET['uid'], $_GET['enemy_id']);
+		$this->template->return = json_encode($return);
+	}
+	
+	public function action_update()
+	{
+		$this->template = View::factory('return');
+		$user = Model::factory('user');
+		$return = $user->hardcore_data($_GET['uid']);
+		$this->template->return = json_encode($return);
 	}
 }
 

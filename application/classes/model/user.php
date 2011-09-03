@@ -52,7 +52,7 @@
 		
 		public function richliness_rank($rank_id)
 		{
-			$rankname = DB::query(Database::SELECT,
+			$rank_name = DB::query(Database::SELECT,
 			   'SELECT * 
 				FROM hardcore_rranks
 				WHERE id = :id')
@@ -60,12 +60,12 @@
 				':id' => $rank_id,
 				))
 			->execute()->current();
-			return $rankname;
+			return $rank_name;
 		}
 		
 		public function manliness_rank($rank_id)
 		{
-			$rankname = DB::query(Database::SELECT,
+			$rank_name = DB::query(Database::SELECT,
 			   'SELECT * 
 				FROM hardcore_mranks
 				WHERE id = :id')
@@ -73,21 +73,46 @@
 				':id' => $rank_id,
 				))
 			->execute()->current();
-			return $rankname;
+			return $rank_name;
 		}
 		
-		public function rank($mrank_id, $rrank_id)
+		public function progress($user)
 		{
-			$mrank = $this->richliness_rank($rrank_id);
-			$rrank = $this->manliness_rank($mrank_id);
-			$mrank_next = $this->richliness_rank(($rrank_id + 1));
-			$rrank_next = $this->manliness_rank(($mrank_id + 1));
+			$rrank = $this->richliness_rank($user['richliness_rank']+1);
+			$mrank = $this->manliness_rank($user['manliness_rank']+1);
+			if (!$rrank)
+			{
+				$rrank['requirement'] = $user['richliness'];
+			}
+			if (!$mrank)
+			{
+				$mrank['requirement'] = $user['manliness'];
+			}
+			$manliness_progress = ($user['manliness'] / $mrank['requirement']) * 225;
+			$richliness_progress = ($user['richliness'] / $rrank['requirement']) * 225;
+			
+			$return = array(
+				'manliness' => $manliness_progress,
+				'richliness' => $richliness_progress,
+			);
+			return $return;
+		}
+		
+		public function rank($mrank_id, $rrank_id, $uid)
+		{
+			$rrank = $this->richliness_rank($rrank_id);
+			$mrank = $this->manliness_rank($mrank_id);
+			$rrank_next = $this->richliness_rank(($rrank_id + 1));
+			$mrank_next = $this->manliness_rank(($mrank_id + 1));
+			$progress = $this->progress($this->hardcore_data($uid));
 			
 			$rank = array(
 				"manliness" => $mrank,
 				"richliness" => $rrank,
 				"next_manliness" => $mrank_next,
 				"next_richliness" => $rrank_next,
+				"richliness_progress" => $progress['richliness'],
+				"manliness_progress" => $progress['manliness'],
 			);
 			return $rank;
 		}

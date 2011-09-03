@@ -1,4 +1,25 @@
-/*
+/*                                                                                                    
+ * 88        88                                   88                                                   
+ * 88        88                                   88                                                   
+ * 88        88                                   88                                                   
+ * 88aaaaaaaa88  ,adPPYYba,  8b,dPPYba,   ,adPPYb,88   ,adPPYba,   ,adPPYba,   8b,dPPYba,   ,adPPYba,  
+ * 88""""""""88  ""     `Y8  88P'   "Y8  a8"    `Y88  a8"     ""  a8"     "8a  88P'   "Y8  a8P_____88  
+ * 88        88  ,adPPPPP88  88          8b       88  8b          8b       d8  88          8PP"""""""  
+ * 88        88  88,    ,88  88          "8a,   ,d88  "8a,   ,aa  "8a,   ,a8"  88          "8b,   ,aa  
+ * 88        88  `"8bbdP"Y8  88           `"8bbdP"Y8   `"Ybbd8"'   `"YbbdP"'   88           `"Ybbd8"'  
+ *
+ * 
+ * 
+ * 88b           d88                        88              
+ * 888b         d888                        88              
+ * 88`8b       d8'88                        88              
+ * 88 `8b     d8' 88   ,adPPYba,    ,adPPYb,88   ,adPPYba,  
+ * 88  `8b   d8'  88  a8"     "8a  a8"    `Y88  a8P_____88  
+ * 88   `8b d8'   88  8b       d8  8b       88  8PP"""""""  
+ * 88    `888'    88  "8a,   ,a8"  "8a,   ,d88  "8b,   ,aa  
+ * 88     `8'     88   `"YbbdP"'    `"8bbdP"Y8   `"Ybbd8"'  
+ *
+ *
  * Hey, you! If you are ever tasked to edit my codebase,
  * I organize by type, and then alphabetically.
  * To find .ex, you would scroll to the class comment,
@@ -25,12 +46,9 @@ a:active, a:visited {
 	outline: none;
 }
 
-body {
+html,body {
 	margin: 0px;
 	background: #353A3F url('/game/inc/images/concrete_wall.png');
-}
-
-html { 
 	overflow-y: scroll;
 }
 
@@ -70,7 +88,7 @@ li a {
 }
 
 #manliness {
-	margin-bottom: 110px;
+	margin-bottom: 151px;
 }
 
 #manliness_image, #richliness_image {
@@ -87,18 +105,22 @@ li a {
 }
 
 #manliness_level_bar, #richliness_level_bar {
+	position: relative;
+        z-index: 0;
 	margin-left: 10px;
 	display: block; 
 	background: #3a3a3a;
 	width: 225px; 
 	height: 20px; 
 	border-radius: 2px;
+	top: -30px;
 }
 
 #manliness_level_overlay, #richliness_level_overlay {
+	z-index: 1;
 	margin-left: 10px;
 	position: relative;
-	top: 20px;
+	top: -10px;
 	display: block; 
 	background: url('/game/inc/images/levelbar.png'); 
 	width: 0px; 
@@ -108,13 +130,27 @@ li a {
 
 #manliness_level_info, #richliness_level_info {
 	position: relative;
-	left: 20px;
+	left: 10px;
 	top: 10px;
+}
+
+#manliness_level_number, #richliness_level_number {
+	z-index: 2;
+	margin-left: 45%;
+    position: relative;
+    left: 10px;
+    top: 8px;
 }
 
 #left {
 	float: left;
 	width: 70%;
+}
+
+#playlist {
+	position: absolute;
+	left: 90%;
+	top: 30px;
 }
 
 #right {
@@ -126,11 +162,11 @@ li a {
 	
 }
 
-#user_list, #enemy_list {
+#user_list, #monster_list {
 	height: 150px;
 }
 
-#users_header, #enemies_header {
+#users_header, #monsters_header {
 }
 
 /*
@@ -143,8 +179,19 @@ li a {
 }
 
 .enemy {
+	color: #ACACAC;
 	padding: 5px;
 	float: left;
+}
+
+.enemy_hover {
+	border-radius: 2px;
+	background: #444344;
+}
+
+.exp {
+	font-size: 12pt;
+	color: #000;
 }
 
 .stat {
@@ -177,3 +224,254 @@ li a {
 .fanwood {
 	font-family: fanwood;
 }
+
+/*
+ * Sound manager shit, ignore this.
+ */
+
+.ui360, /* entire UI */
+.sm2-360ui { /* canvas container */
+ position:relative;
+}
+
+.ui360,
+.sm2-360ui {
+ min-width:50px; /* should always be at least this. */
+ min-height:50px;
+}
+
+.sm2-360ui {
+ width:50px;
+ height:50px;
+}
+
+.ui360,
+.ui360 * {
+ vertical-align:middle;
+}
+
+.sm2-360ui {
+ position:relative;
+ display:inline-block; /* firefox 3 et al */
+ float:left; /* IE 6+7, firefox 2 needs this, inline-block would work with fx3 and others */
+ *display:inline;
+/*
+ clear:left;
+*/
+}
+
+.sm2-360ui.sm2_playing,
+.sm2-360ui.sm2_paused {
+ /* bump on top when active */
+ z-index:10;
+}
+
+.ui360 a { /* .sm2_link class added to playable links by SM2 */
+ float:left;
+ display:inline;
+ position:relative;
+ color:#fff;
+ text-decoration:none;
+ left:3px; /* slight spacing on left UI */
+ top:18px; /* vertical align */
+ text-indent:50px; /* make room for UI at left */
+}
+
+.ui360 a.sm2_link { /* SM2 has now started */
+ text-indent:0px; /* UI now in place. */
+}
+
+.ui360 a,
+.ui360 a:hover,
+.ui360 a:focus {
+ padding:2px;
+ margin-left:-2px;
+ margin-top:-2px;
+}
+
+.ui360 a:hover,
+.ui360 a:focus {
+ background:#eee;
+ -moz-border-radius:3px;
+ -webkit-border-radius:3px;
+ -khtml-border-radius:3px;
+ border-radius:3px;
+ outline:none;
+}
+
+.ui360 .sm2-canvas {
+ position:absolute;
+ left:0px;
+ top:0px;
+}
+
+.ui360 .sm2-timing {
+ position:absolute;
+ display:block;
+ left:0px;
+ top:0px;
+ width:100%;
+ height:100%;
+ margin:0px;
+ font:11px "helvetica neue",helvetica,monaco,lucida,terminal,monospace;
+ color:#fff;
+ text-align:center;
+ line-height:50px;
+}
+
+.ui360 .sm2-timing.alignTweak {
+ text-indent:1px; /* devious center-alignment tweak for Safari (might break things for others.) */
+}
+
+.ui360 .sm2-cover {
+ position:absolute;
+ left:0px;
+ top:0px;
+ width:100%;
+ height:100%;
+ z-index:2;
+ display:none;
+ background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==); /* old-skool bug: IE 9 won't catch mouse events otherwise. /smash */
+}
+
+.ui360 .sm2-360btn {
+ position:absolute;
+ display:block;
+ top:50%;
+ left:50%;
+ width:22px;
+ height:22px;
+ margin-left:-11px;
+ margin-top:-11px;
+ cursor:pointer;
+ z-index:3;
+}
+
+.ui360 .sm2-360data {
+ display:inline-block;
+ font-family:helvetica;
+}
+
+.ui360 .sm2-360ui.sm2_playing .sm2-cover,
+.ui360 .sm2-360ui.sm2_paused .sm2-cover {
+ display:block;
+}
+
+/* this could be optimized a fair bit. */
+
+.ui360 {
+ /*
+  "fake" button shown before SM2 has started, non-JS/non-SM2 case etc.
+  background image will be removed via JS, in threeSixyPlayer.init()
+ */
+ background:transparent url('../images/360-button-play.png') no-repeat 14px 50%;
+ _background:transparent url('../images/360-button-play.gif') no-repeat 14px 50%; /* IE 6-only: special crap GIF */
+}
+
+.ui360 .sm2-360btn-default,
+.ui360 .sm2-360ui.sm2_paused .sm2-360btn {
+ background:transparent url('../images/360-button-play.png') no-repeat 50% 50%;
+ _background:transparent url('../images/360-button-play.gif') no-repeat 50% 50%; /* IE 6-only: special crap GIF */
+}
+
+.ui360 .sm2-360btn-default,
+.ui360 .sm2-360ui.sm2_paused .sm2-360btn {
+ cursor:pointer;
+}
+
+.ui360 .sm2-360btn-default:hover,
+.ui360 .sm2-360ui.sm2_paused .sm2-360btn:hover {
+ background:transparent url('../images/360-button-play-light.png') no-repeat 50% 50%;
+ _background:transparent url('../images/360-button-play.gif') no-repeat 50% 50%;
+ cursor:pointer;
+}
+
+.ui360 .sm2-360ui.sm2_playing .sm2-360btn:hover,
+.ui360 .sm2-360btn-playing:hover {
+ background:transparent url('../images/360-button-pause-light.png') no-repeat 50% 50%;
+ _background:transparent url('../images/360-button-pause-light.gif') no-repeat 50% 50%;
+ cursor:pointer;
+}
+
+.ui360 .sm2-360ui.sm2_playing .sm2-timing {
+ visibility:visible;
+}
+
+.ui360 .sm2-360ui.sm2_buffering .sm2-timing {
+ visibility:hidden;
+}
+
+.ui360 .sm2-360ui .sm2-timing,
+.ui360 .sm2-360ui .sm2-360btn:hover + .sm2-timing,
+.ui360 .sm2-360ui.sm2_paused .sm2-timing {
+ visibility:hidden;
+}
+
+.ui360 .sm2-360ui.sm2_dragging .sm2-timing,
+.ui360 .sm2-360ui.sm2_dragging .sm2-360btn:hover + .sm2-timing {
+ /* paused + dragging */
+ visibility:visible;
+}
+
+.ui360 .sm2-360ui.sm2_playing .sm2-360btn,
+.ui360 .sm2-360ui.sm2_dragging .sm2-360btn,
+.ui360 .sm2-360ui.sm2_dragging .sm2-360btn:hover,
+.ui360 .sm2-360ui.sm2_dragging .sm2-360btn-playing:hover {
+ /* don't let pause button show on hover when dragging (or paused and dragging) */
+ background:transparent;
+ cursor:auto;
+}
+
+.ui360 .sm2-360ui.sm2_buffering .sm2-360btn,
+.ui360 .sm2-360ui.sm2_buffering .sm2-360btn:hover {
+  background:transparent url('../images/icon_loading_spinner.gif') no-repeat 50% 50%;
+  opacity:0.5;
+  visibility:visible;
+}
+
+/* inline list style */
+
+.sm2-inline-list .ui360,
+.sm2-inline-block .ui360 {
+ position:relative;
+ display:inline-block;
+ float:left;
+ _display:inline;
+ margin-bottom:-15px;
+}
+
+.sm2-inline-list .ui360 {
+ /* inline player: minor tweak, tighten spacing */
+ margin-right:-2px;
+}
+
+.sm2-inline-block .ui360 {
+ margin-right:8px;
+}
+
+.sm2-inline-list .ui360 a {
+ display:none;
+}
+
+/* annotations */
+
+ul.ui360playlist {
+ list-style-type:none;
+}
+
+ul.ui360playlist,
+ul.ui360playlist li {
+ margin:0px;
+ padding:0px;
+}
+
+div.ui360 div.metadata {
+ display:none;
+}
+
+div.ui360 a span.metadata,
+div.ui360 a span.metadata * {
+ /* name of track, note etc. */
+ vertical-align:baseline;
+}
+ */
