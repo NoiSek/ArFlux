@@ -16,7 +16,7 @@
 			threeSixtyPlayer.config = {
 				playNext: true, // stop after one sound, or play through list until end
 				autoPlay: true, // start playing the first sound right away
-				allowMultiple: true, // let many sounds play at once (false = one at a time)
+				allowMultiple: false, // let many sounds play at once (false = one at a time)
 				loadRingColor: '#000', // amount of sound which has loaded
 				playRingColor: '#ff0000', // amount of sound which has played
 				backgroundRingColor: '#eee', // "default" color shown underneath everything else
@@ -44,7 +44,7 @@
 					$.getJSON('http://arflux-rpg.com/game/index.php/handler/request', data, function(data){
 						if (data.success == true)
 						{
-							$("#enemy_list").append("<div id='" + data.id + "' class='fanwood enemy'><img class='enemy_image' src='http://dummyimage.com/100x100/000/fff&text=100x100' /><div class='enemy_name'>" + data.name + "</div><div class='enemy_manliness'><span style='color:#ff0409; font-size: 14px; font-style: bold;'>Manliness</span> " + data.manliness + "</div></div>");
+							$("#enemy_list").append("<div id='" + data.id + "' class='fanwood enemy'><img class='enemy_image' src='http://dummyimage.com/100x100/000/fff&text=100*100' /><div class='enemy_name'>" + data.name + "</div><div class='enemy_manliness'><span style='color:#ff0409; font-size: 14px; font-style: bold;'>Manliness</span> " + data.manliness + "</div></div>");
 						}
 						else
 						{
@@ -88,28 +88,17 @@
 						}
 						update();
 						animate_ranks(data.manliness_progress, data.richliness_progress);
-						if(data.success == true)
-						{
-							refresh = true;
-						}
-						else 
-						{
-							refresh = false;	
-						}
 					});
 				}
 				
 				$(".enemy").live('click', function(){
 					combat('uid='+uid + "&enemy_id=" + $(this).attr('id'));
-					if (refresh == true)
-					{
-						$(this).fadeOut(100, function(){
-							$(this).remove();
-							load_opponent();
-						});
-					}
+					$(this).fadeOut(100, function(){
+						$(this).remove();
+						load_opponent();
+					});
 				});
-				$(".enemy").live('mouseenter', function(){ 
+				$(".enemy").live('mouseenter', function(){	
   					$(this).animate({
   						boxShadow: '0 0 5px #f00',
   					}, 200);
@@ -155,7 +144,7 @@
 					<?
 						foreach($songs as $songs)
 						{
-							echo "{$songs}\n";
+							echo "				{$songs}\n";
 						}
 					?>
 				</div>
@@ -211,8 +200,8 @@
 		</div>
 		<script src="/include/jquery.zrssfeed.min.js" type="text/javascript"></script>
 		<script src="/include/jquery.vticker.js" type="text/javascript"></script>
-		<script type="text/javascript">
-		$(document).ready(function($){
+		<script type="text/javascript" >
+		$(document).ready(function(){
 			//Start feeds
 			$('#ticker1').rssfeed('http://arflux-rpg.com/forum/syndication.php').one('ajaxStop', function() {
 				$('#ticker1 div.rssBody').vTicker({ showItems: 2});

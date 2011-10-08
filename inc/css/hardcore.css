@@ -179,6 +179,7 @@ li a {
 }
 
 .enemy {
+	cursor: pointer;
 	color: #ACACAC;
 	padding: 5px;
 	float: left;
@@ -191,7 +192,7 @@ li a {
 
 .exp {
 	font-size: 12pt;
-	color: #000;
+	color: #c6c6c6;
 }
 
 .stat {

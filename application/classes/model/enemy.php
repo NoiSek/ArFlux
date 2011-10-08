@@ -341,7 +341,7 @@
 				$progress = $user_func->progress($user_func->hardcore_data($user['id']));
 				
 				$return = array(
-					'success' => false,
+					'success' => true,
 					'update_richliness_rank' => $update_richliness_rank,
 					'update_manliness_rank' => $update_manliness_rank,
 					'manliness_progress' => $progress['manliness'],

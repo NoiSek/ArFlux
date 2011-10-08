@@ -42,7 +42,7 @@
 			$forum = $MyBBI->getUser();
 			$this->template = View::factory('hardcore');
 			$this->template->user = new user_data($forum);
-			$this->template->songs = shuffle(array(
+			$this->template->songs = array(
 			 		"<a href='http://arflux-rpg.com/game/inc/sounds/doom/d_e1m1.ogg'></a>",
  					"<a href='http://arflux-rpg.com/game/inc/sounds/doom/d_e1m2.ogg'></a>",
  					"<a href='http://arflux-rpg.com/game/inc/sounds/doom/d_e1m4.ogg'></a>",
@@ -63,7 +63,8 @@
  					"<a href='http://arflux-rpg.com/game/inc/sounds/doom/d_e3m2.ogg'></a>",
  					"<a href='http://arflux-rpg.com/game/inc/sounds/doom/d_e3m3.ogg'></a>",
   					"<a href='http://arflux-rpg.com/game/inc/sounds/doom/d_e3m8.ogg'></a>",
-			));
+			);
+			shuffle($this->template->songs);
 		}
 	
 		public function action_submit()
